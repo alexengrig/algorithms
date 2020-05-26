@@ -53,6 +53,10 @@ public class PrefixFunction {
         return lengths[lengths.length - 1];
     }
 
+    public int lengthAt(int index) {
+        return lengths[index];
+    }
+
     public String prefix() {
         return string.substring(0, length());
     }
