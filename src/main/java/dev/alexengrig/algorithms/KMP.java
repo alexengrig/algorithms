@@ -38,6 +38,24 @@ public class KMP {
         return target.stream().mapToInt(Integer::intValue).toArray();
     }
 
+    public static int[] otherAll(String pattern, String text) {
+        PrefixFunction prefixFunction = new PrefixFunction(pattern);
+        List<Integer> target = new ArrayList<>();
+        for (int i = 0, j = 0; i < text.length(); i++) {
+            while (j > 0 && text.charAt(i) != pattern.charAt(j)) {
+                j = prefixFunction.lengthAt(j - 1);
+            }
+            if (text.charAt(i) == pattern.charAt(j)) {
+                j += 1;
+            }
+            if (j == pattern.length()) {
+                target.add(i - j + 1);
+                j = prefixFunction.lengthAt(j - 1);
+            }
+        }
+        return target.stream().mapToInt(Integer::intValue).toArray();
+    }
+
     public static int[] nonOverlap(String pattern, String text) {
         PrefixFunction prefixFunction = new PrefixFunction(pattern);
         List<Integer> target = new ArrayList<>();
