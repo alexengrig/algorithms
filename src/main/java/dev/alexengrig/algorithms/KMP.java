@@ -7,8 +7,7 @@ public class KMP {
     public static int first(String pattern, String text) {
         PrefixFunction prefixFunction = new PrefixFunction(pattern);
         for (int i = 0, p = pattern.length(), l = text.length() - p + 1; i < l; ) {
-            String part = text.substring(i, i + p);
-            int length = matchLength(pattern, part);
+            int length = matchLength(pattern, text, i);
             if (length == p) {
                 return i;
             } else if (length > 0) {
@@ -24,8 +23,7 @@ public class KMP {
         PrefixFunction prefixFunction = new PrefixFunction(pattern);
         List<Integer> target = new ArrayList<>();
         for (int i = 0, p = pattern.length(), l = text.length() - p + 1; i < l; ) {
-            String part = text.substring(i, i + p);
-            int length = matchLength(pattern, part);
+            int length = matchLength(pattern, text, i);
             if (length == p) {
                 target.add(i);
             }
@@ -60,8 +58,7 @@ public class KMP {
         PrefixFunction prefixFunction = new PrefixFunction(pattern);
         List<Integer> target = new ArrayList<>();
         for (int i = 0, p = pattern.length(), l = text.length() - p + 1; i < l; ) {
-            String part = text.substring(i, i + p);
-            int length = matchLength(pattern, part);
+            int length = matchLength(pattern, text, i);
             if (length == p) {
                 target.add(i);
                 i += length;
@@ -74,9 +71,9 @@ public class KMP {
         return target.stream().mapToInt(Integer::intValue).toArray();
     }
 
-    private static int matchLength(String pattern, String text) {
+    private static int matchLength(String pattern, String text, int from) {
         for (int i = 0, l = pattern.length(); i < l; i++) {
-            if (pattern.charAt(i) != text.charAt(i)) {
+            if (pattern.charAt(i) != text.charAt(from + i)) {
                 return i;
             }
         }
