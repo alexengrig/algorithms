@@ -28,4 +28,10 @@ public class KMPTest {
         assertArrayEquals(new int[]{0, 4}, KMP.nonOverlap("ABA", "ABACABAD"));
         assertArrayEquals(new int[]{0, 4}, KMP.nonOverlap("ABA", "ABABABA"));
     }
+
+    @Test
+    public void testOtherNonOverlap() {
+        assertArrayEquals(new int[]{0, 4}, KMP.otherNonOverlap("ABA", "ABACABAD"));
+        assertArrayEquals(new int[]{0, 4}, KMP.otherNonOverlap("ABA", "ABABABA"));
+    }
 }
