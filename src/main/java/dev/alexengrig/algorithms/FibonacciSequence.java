@@ -6,7 +6,7 @@ import java.util.Map;
 public class FibonacciSequence {
     public static int numberAt(int index) {
         int target = index;
-        for (int i = 1, left = 0, right = 1; i < index; i++) {
+        for (int i = 2, left = 0, right = 1; i <= index; i++) {
             target = left + right;
             left = right;
             right = target;
