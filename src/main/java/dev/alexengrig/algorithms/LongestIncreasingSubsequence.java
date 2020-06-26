@@ -1,11 +1,11 @@
 package dev.alexengrig.algorithms;
 
 public class LongestIncreasingSubsequence {
-    public static int any(int[] array) {
-        return any(array, array.length);
+    public static int length(int[] array) {
+        return length(array, array.length);
     }
 
-    public static int any(int[] array, int length) {
+    public static int length(int[] array, int length) {
         int[] lis = new int[length];
         int max = 0;
         for (int i = 1; i < length; i++) {
@@ -22,14 +22,14 @@ public class LongestIncreasingSubsequence {
     }
 
     public static class Recursive {
-        public static int any(int[] array) {
-            return any(array, array.length);
+        public static int length(int[] array) {
+            return length(array, array.length);
         }
 
-        public static int any(int[] array, int length) {
+        public static int length(int[] array, int length) {
             int max = 1;
             for (int i = 1; i < length; i++) {
-                int lis = any(array, i);
+                int lis = length(array, i);
                 if (array[i - 1] < array[length - 1] && lis + 1 > max) {
                     max = lis + 1;
                 }
