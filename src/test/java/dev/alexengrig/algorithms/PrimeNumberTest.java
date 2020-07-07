@@ -2,8 +2,7 @@ package dev.alexengrig.algorithms;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class PrimeNumberTest {
     public static final int[] PRIME_NUMBERS;
@@ -116,7 +115,9 @@ public class PrimeNumberTest {
                 9413, 9419, 9421, 9431, 9433, 9437, 9439, 9461, 9463, 9467, 9473,
                 9479, 9491, 9497, 9511, 9521, 9533, 9539, 9547, 9551, 9587, 9601,
                 9613, 9619, 9623, 9629, 9631, 9643, 9649, 9661, 9677, 9679, 9689,
-                9697, 9719, 9721, 9733
+                9697, 9719, 9721, 9733, 9739, 9743, 9749, 9767, 9769, 9781, 9787,
+                9791, 9803, 9811, 9817, 9829, 9833, 9839, 9851, 9857, 9859, 9871,
+                9883, 9887, 9901, 9907, 9923, 9929, 9931, 9941, 9949, 9967, 9973
         };
     }
 
@@ -158,5 +159,30 @@ public class PrimeNumberTest {
         assertFalse(PrimeNumber.isPrime(77));
         assertFalse(PrimeNumber.isPrime(87));
         assertFalse(PrimeNumber.isPrime(100));
+    }
+
+    @Test
+    public void should_return_allNext_primeNumbers() {
+        for (int i = 0, prime_numbersLength = PRIME_NUMBERS.length - 1; i < prime_numbersLength; i++) {
+            assertEquals(PRIME_NUMBERS[i + 1], PrimeNumber.next(PRIME_NUMBERS[i]));
+        }
+    }
+
+    @Test
+    public void should_return_next_primeNumber() {
+        assertEquals(2, PrimeNumber.next(-2));
+        assertEquals(2, PrimeNumber.next(-1));
+        assertEquals(2, PrimeNumber.next(0));
+        assertEquals(2, PrimeNumber.next(1));
+        assertEquals(3, PrimeNumber.next(2));
+        assertEquals(5, PrimeNumber.next(3));
+        assertEquals(5, PrimeNumber.next(4));
+        assertEquals(7, PrimeNumber.next(5));
+        assertEquals(7, PrimeNumber.next(6));
+        assertEquals(11, PrimeNumber.next(7));
+        assertEquals(11, PrimeNumber.next(8));
+        assertEquals(11, PrimeNumber.next(9));
+        assertEquals(11, PrimeNumber.next(10));
+        assertEquals(13, PrimeNumber.next(11));
     }
 }

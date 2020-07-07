@@ -14,4 +14,16 @@ public class PrimeNumber {
         }
         return true;
     }
+
+    public static int next(int number) {
+        if (number <= 1) {
+            return 2;
+        }
+        for (int i = number + 1, n = number * number; i < n; i++) {
+            if (isPrime(i)) {
+                return i;
+            }
+        }
+        throw new IllegalArgumentException("Could not find a next prime number for: " + number);
+    }
 }
